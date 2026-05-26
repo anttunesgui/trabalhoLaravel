@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipe;
+use App\Models\Contrato;
 
 class EquipeController extends Controller
 {
@@ -66,7 +67,7 @@ class EquipeController extends Controller
     public function destroy(Equipe $equipe)
     {
 
-        if (isset($equipe->contratos)){
+        if ((Contrato::where('equipe_id', $equipe->id)->exists())){
             return redirect()->route('equipes.index')
                              ->with('mensagemErro', 'Não possível Excluir esta Equipe pois ela está incluido em um Contrato');
         }else{

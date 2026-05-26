@@ -67,7 +67,8 @@ class JogadorController extends Controller
      */
     public function destroy(Jogador $jogador){
 
-        if (($jogador->contrato->exists())){
+        
+        if (isset($jogador->contrato)){
             return redirect()->route('jogadores.index')
                              ->with('mensagemErro', 'Não possível Excluir este jogador pois ele está incluido em um Contrato');
         }else{
