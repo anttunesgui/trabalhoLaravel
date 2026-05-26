@@ -65,8 +65,15 @@ class EquipeController extends Controller
      */
     public function destroy(Equipe $equipe)
     {
-        $equipe->delete();
 
-        return redirect()->route('equipes.index');
+        if (isset($equipe->contratos)){
+            return redirect()->route('equipes.index')
+                             ->with('mensagemErro', 'Não possível Excluir esta Equipe pois ela está incluido em um Contrato');
+        }else{
+            $equipe->delete();
+            return redirect()->route('equipes.index')
+                             ->with('mensagemSucesso', 'Equipe excluída com sucesso');
+
+        }
     }
 }

@@ -10,10 +10,10 @@
     @endif
 
     @if(session('mensagemSucesso'))
-    <div style="color:green;">
-        {{ session('mensagemSucesso') }}
-    </div>
-@endif
+        <div style="color:green;">
+            {{ session('mensagemSucesso') }}
+        </div>
+    @endif
 
     <h1>Lista de {{ $title }}</h1>
 

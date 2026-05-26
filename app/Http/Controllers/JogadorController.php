@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jogador;
 use Illuminate\Http\Request;
+use App\Models\Contrato;
 
 class JogadorController extends Controller
 {
@@ -66,7 +67,7 @@ class JogadorController extends Controller
      */
     public function destroy(Jogador $jogador){
 
-        if (isset($jogador->contrato)){
+        if (($jogador->contrato->exists())){
             return redirect()->route('jogadores.index')
                              ->with('mensagemErro', 'Não possível Excluir este jogador pois ele está incluido em um Contrato');
         }else{
@@ -74,6 +75,5 @@ class JogadorController extends Controller
             return redirect()->route('jogadores.index')
                              ->with('mensagemSucesso', 'Jogador Excluído com sucesso');
         }
-
     }
 }

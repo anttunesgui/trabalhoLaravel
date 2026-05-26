@@ -26,7 +26,8 @@ class EstatisticaController extends Controller
 
         $estatistica = $request->validate(['gols' => 'required',
                                            'assistencias' => 'required',
-                                           'partidas' => 'required']);
+                                           'jogos' => 'required',
+                                           'jogador_id' => 'required']);
 
         Estatistica::create($estatistica);
 
