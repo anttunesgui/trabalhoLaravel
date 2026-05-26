@@ -24,7 +24,11 @@ class EstatisticaController extends Controller
      */
     public function store(Request $request){
 
-        Estatistica::create($request->all());
+        $estatistica = $request->validate(['gols' => 'required',
+                                           'assistencias' => 'required',
+                                           'partidas' => 'required']);
+
+        Estatistica::create($estatistica);
 
         $jogador = Jogador::find($request->jogador_id);
 
